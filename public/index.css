@@ -1,0 +1,78 @@
+.contentBox {
+    border: 3px solid rgb(64, 64, 64);
+    border-radius: 5px;
+    background-color: darkgray;
+    margin: auto;
+    padding: 10px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.view {
+    align-items: center;
+    display: flex;
+    background-color: rgb(32, 32, 32);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+p {
+    text-align: center;
+    font-family: sans-serif;
+}
+
+h3 {
+    font-family: sans-serif;
+}
+
+.emptyText {
+    color: darkgray;
+}
+
+input {
+    border: 2px solid rgb(64, 64, 64);
+    border-radius: 5px;
+}
+
+import {
+    font-size: 0px;
+}
+
+.story>tbody>tr>td {
+    padding: 0px;
+    border-spacing: 0px;
+    border: 1px solid #444;
+}
+
+.transpartentView {
+    align-items: center;
+    display: flex;
+    background-color: #0000;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.panel {
+    width: 100px;
+    height: 100px;
+    font-size: 15px;
+    position: relative;
+}
+
+.hide {
+    display: none;
+}
+
+.button {
+    cursor: pointer;
+}

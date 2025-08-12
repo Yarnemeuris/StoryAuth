@@ -1,0 +1,16 @@
+{
+  "name": "storyauth",
+  "version": "1.0.0",
+  "description": "A auth system that uses a story instead of a password.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2"
+  }
+}
