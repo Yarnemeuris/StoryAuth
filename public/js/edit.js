@@ -10,7 +10,7 @@ function editPanel(event) {
         element.addEventListener("mousedown", startMove);
     }
 
-    utils.addEventListenerFromID("close", "click", () => {
+    utils.addEventListener("#close", "click", () => {
         event.target.style.backgroundColor = document.getElementById("editPanel").style.backgroundColor;
         event.target.innerHTML = document.getElementById("editPanel").innerHTML;
 
@@ -39,11 +39,11 @@ function startMove(event) {
     }, { once: true })
 }
 
-utils.addEventListenerFromID("add", "click", () => {
+utils.addEventListener("#add", "click", () => {
     if (document.getElementById("addInput").value.match(/\p{Extended_Pictographic}/gu) == null) return;
 
     const p = document.createElement("p");
-    p.innerText = document.getElementById("addInput").value;
+    p.innerText = document.getElementById("addInput").value.match(/\p{Extended_Pictographic}/gu)[-1];
     p.style.fontSize = "inherit";
     p.style.position = "absolute";
     p.style.margin = "0px";
@@ -54,7 +54,7 @@ utils.addEventListenerFromID("add", "click", () => {
     document.getElementById("editPanel").appendChild(p);
 })
 
-utils.addEventListenerFromID("changeColor", "input", (event) => {
+utils.addEventListener("#changeColor", "input", (event) => {
     document.getElementById("editPanel").style.backgroundColor = event.target.value;
 })
 

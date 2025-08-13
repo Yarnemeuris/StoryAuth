@@ -1,9 +1,10 @@
 import * as utils from "./js/utils.js";
 import "./js/edit.js";
+import "./js/logIn.js";
 
-utils.switchToView("signUp")
+utils.switchToView("logIn")
 
-utils.addEventListenerFromID("usernameInput", "input", async (event) => {
+utils.addEventListener("#signUpView #usernameInput", "input", async (event) => {
     const value = event.target.value
     if (value == "") return
 
@@ -14,9 +15,9 @@ utils.addEventListenerFromID("usernameInput", "input", async (event) => {
     document.getElementById("usernameAvailable").style.display = available ? "none" : "initial";
 });
 
-utils.addEventListenerFromID("createAccountButton", "click", async () => {
+utils.addEventListener("#createAccountButton", "click", async () => {
     const username = document.getElementById("usernameInput").value
-    const story = document.getElementById("story").innerHTML.replaceAll(" ", "").replaceAll("\n", "")
+    const story = document.querySelector("#signUpView #story").innerHTML.replaceAll(" ", "").replaceAll("\n", "")
 
     if (document.getElementById("usernameAvailable").style.display != "none") return
 

@@ -10,8 +10,8 @@ export function switchToView(viewName) {
     }
 }
 
-export function addEventListenerFromID(id, event, exec, options) {
-    document.getElementById(id).addEventListener(event, exec, options);
+export function addEventListener(query, event, exec, options) {
+    document.querySelector(query).addEventListener(event, exec, options);
 }
 
 export function showTransparentView(viewName) {
@@ -74,7 +74,7 @@ async function importHTML(element) {
 }
 
 async function importAllHTML(element) {
-    for (var importElement of element.getElementsByTagName("import")) {
+    for (var importElement of element.querySelectorAll("import")) {
         await importHTML(importElement);
     }
 }

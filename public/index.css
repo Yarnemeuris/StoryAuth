@@ -12,6 +12,15 @@
     align-items: center;
 }
 
+.flexBox {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
 .view {
     align-items: center;
     display: flex;

@@ -11,13 +11,26 @@
 </head>
 
 <body>
-    <div class="view" data-viewname="signUp">
+    <div class="view" data-viewname="signUp" id="signUpView">
         <div class="contentBox">
             <input data-defaultValue="Username" type="text" id="usernameInput"></input>
-            <h5 style="display: none; margin-top: 1px; margin-bottom: 0px; color: rgb(206, 1, 1);" id="usernameAvailable">This username is not available.</h5>
+            <h5 style="display: none; margin-top: 1px; margin-bottom: 0px; color: rgb(206, 1, 1);"
+                id="usernameAvailable">This username is not available.</h5>
             <p style="text-align: left; width: 100%; margin-top: 20px; margin-bottom: 5px;">story:</p>
             <import id="story">./html/story.html</import>
             <button style="margin-top: 15px; margin-bottom: 5px;" id="createAccountButton">create account</button>
+        </div>
+    </div>
+
+    <div class="view" data-viewname="logIn" id="logInView">
+        <div class="contentBox">
+            <input data-defaultValue="Username" type="text" id="usernameInput"></input>
+            <button style="margin-top: 15px;" id="nextButton">next</button>
+            <div class="flexBox hide">
+                <p style="text-align: left; width: 100%; margin-bottom: 5px; margin-top: 0px;">story:</p>
+                <import id="story">./html/story.html</import>
+                <button style="margin-top: 15px; margin-bottom: 5px;" id="logInButton">log in</button>
+            </div>
         </div>
     </div>
 
