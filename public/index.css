@@ -32,6 +32,10 @@ h3 {
     font-family: sans-serif;
 }
 
+h5 {
+    font-family: sans-serif;
+}
+
 .emptyText {
     color: darkgray;
 }
@@ -74,5 +78,13 @@ import {
 }
 
 .button {
+    cursor: pointer;
+}
+
+button {
+    box-sizing: border-box;
+    background-color: lightgray;
+    border: 2px solid rgb(100, 100, 100);
+    border-radius: 5px;
     cursor: pointer;
 }

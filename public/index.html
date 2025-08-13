@@ -13,9 +13,11 @@
 <body>
     <div class="view" data-viewname="signUp">
         <div class="contentBox">
-            <input data-defaultValue="Username" type="text"></input>
+            <input data-defaultValue="Username" type="text" id="usernameInput"></input>
+            <h5 style="display: none; margin-top: 1px; margin-bottom: 0px; color: rgb(206, 1, 1);" id="usernameAvailable">This username is not available.</h5>
             <p style="text-align: left; width: 100%; margin-top: 20px; margin-bottom: 5px;">story:</p>
-            <import>./html/story.html</import>
+            <import id="story">./html/story.html</import>
+            <button style="margin-top: 15px; margin-bottom: 5px;" id="createAccountButton">create account</button>
         </div>
     </div>
 
