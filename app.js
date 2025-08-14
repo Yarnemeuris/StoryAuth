@@ -32,7 +32,7 @@ app.post("/signup", async (req, res) => {
 });
 
 app.get("/logIn/story/:name", (req, res) => {
-    if (usernameInUse(req.params.name)) {
+    if (!usernameInUse(req.params.name)) {
         res.status(500).end();
         return;
     }
