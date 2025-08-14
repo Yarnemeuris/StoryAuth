@@ -31,6 +31,15 @@ app.post("/signup", async (req, res) => {
     res.status(201).end();
 });
 
+app.get("/logIn/story/:name", (req, res) => {
+    if (usernameInUse(req.params.name)) {
+        res.status(500).end();
+        return;
+    }
+
+    res.status(200).json([users[req.params.name].panelInfo]);
+})
+
 rl.on("line", (input) => {
     if (input != "exit" && input != "save") return
 
