@@ -17,9 +17,27 @@ utils.addEventListener("#signUpView #usernameInput", "input", async (event) => {
 
 utils.addEventListener("#createAccountButton", "click", async () => {
     const username = document.getElementById("usernameInput").value
-    const story = document.querySelector("#signUpView #story").innerHTML.replaceAll(" ", "").replaceAll("\n", "")
 
     if (document.getElementById("usernameAvailable").style.display != "none") return
 
-    await fetch("/signup", { method: "POST", headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: username, story: story }) }).then(res => { console.log("Request complete! response:", res); });
+    var panelInfo = Array.from({ length: 6 }, () => { return { positions: [] } });
+    document.querySelectorAll("#signUpView #story p").forEach((element) => {
+        panelInfo[element.parentNode.id].positions.push([element.style.top.split("%")[0], element.style.left.split("%")[0]])
+    });
+    document.querySelectorAll("#signUpView .panel").forEach((element) => {
+        panelInfo[element.id].color = element.style.backgroundColor
+    })
+
+    var story = Array.from({ length: 6 }, () => []);
+    document.querySelectorAll("#signUpView .panel").forEach((panel) => {
+        story[panel.id].push(panel.style.backgroundColor);
+        panel.querySelectorAll("p").forEach((element) => {
+            story[panel.id].push(element.style.top.split("%")[0] + " " + element.style.left.split("%")[0] + element.innerText)
+        })
+        story[panel.id].sort()
+    })
+
+    const status = await fetch("/signup", { method: "POST", headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: username, story: story.toString(), panelInfo: panelInfo }) }).then(res => res.status);
+
+    console.log(status)
 });

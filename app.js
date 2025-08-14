@@ -27,7 +27,7 @@ app.post("/signup", async (req, res) => {
     }
 
     const hash = await bcrypt.hash(req.body.story, saltRounds);
-    users[req.body.username] = { hash: hash };
+    users[req.body.username] = { hash: hash, panelInfo: req.body.panelInfo };
     res.status(201).end();
 });
 
