@@ -1,8 +1,11 @@
+const viewSwitchEvent = new Event("viewSwitch")
+
 export function switchToView(viewName) {
     const allViews = document.getElementsByClassName("view")
     for (const view of allViews) {
         if (view.dataset.viewname == viewName) {
             view.classList.remove("hide");
+            view.dispatchEvent(viewSwitchEvent);
             continue;
         }
 
