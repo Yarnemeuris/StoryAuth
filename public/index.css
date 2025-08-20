@@ -82,6 +82,10 @@ import {
     position: relative;
 }
 
+.outline {
+    -webkit-text-stroke: 1px lightgray;
+}
+
 .hide {
     display: none;
 }

@@ -1,5 +1,10 @@
 import * as utils from "./utils.js";
 
+utils.addEventListener("#signUpView", "viewSwitch", () => {
+    document.querySelector("#editPanelView #create").classList.remove("hide");
+    document.querySelector("#editPanelView #change").classList.add("hide");
+})
+
 function editPanel(event) {
     utils.showTransparentView("editPanel");
 
@@ -43,7 +48,7 @@ utils.addEventListener("#add", "click", () => {
     if (document.getElementById("addInput").value.match(/\p{Extended_Pictographic}/gu) == null) return;
 
     const p = document.createElement("p");
-    p.innerText = document.getElementById("addInput").value.match(/\p{Extended_Pictographic}/gu)[-1];
+    p.innerText = document.getElementById("addInput").value;
     p.style.fontSize = "inherit";
     p.style.position = "absolute";
     p.style.margin = "0px";
@@ -58,6 +63,6 @@ utils.addEventListener("#changeColor", "input", (event) => {
     document.getElementById("editPanel").style.backgroundColor = event.target.value;
 })
 
-for (const panel of document.getElementsByClassName("panel")) {
+for (const panel of document.querySelectorAll("#signUpView .panel")) {
     panel.addEventListener("click", editPanel)
 }

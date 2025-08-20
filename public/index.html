@@ -34,14 +34,22 @@
         </div>
     </div>
 
+    <div class="view" data-viewname="account">
+        <div class="contentBox">
+            <h1>you're account</h1>
+        </div>
+    </div>
 
-    <div class="hide transpartentView" data-viewname="editPanel" style="user-select: none;">
+
+    <div class="transpartentView hide" data-viewname="editPanel" style="user-select: none;" id="editPanelView">
         <div class="contentBox"
             style="width: calc(round(down, (80vmin - 50px), 100px)); height: calc(round(down, 80vmin + 50px, 100px) - 35px); position: relative; justify-content: flex-end;">
             <h3 style="width: 100%; position: absolute; top: 5px; margin: 0px; left: 10px;">edit panel:</h3>
             <i class="material-icons button" style="position: absolute; right: 5px; top: 5px; margin: 0px;"
                 id="close">close</i>
-            <div style="height: 24px; width: 100%; margin-bottom: 15px; display: flex; align-items: center;">
+
+            <div id="create" class="flexBox hide"
+                style="height: 24px; width: 100%; margin-bottom: 15px; flex-direction: row; justify-content: flex-start;">
                 <i class="material-icons button" style="margin-right: 2px;" id="add">add_circle_outline</i>
                 <input type="text" style="margin-right: 10px; padding: 0px; font-size: 17px; width: 22px;"
                     id="addInput">
@@ -51,6 +59,12 @@
                 </label>
                 <input type="color" id="changeColor" style="z-index: -1; position: absolute;">
             </div>
+
+            <div id="change" class="flexBox"
+                style="flex-direction: row; justify-content: flex-start; width: 100%; margin-bottom: 5px; height: 24px;">
+                <input type="text" id="changeInput" style="width: 22px; text-align: center;">
+            </div>
+
             <div id="editPanel"
                 style="width: calc(round(down, 80vmin - 50px, 100px)); height: calc(round(down, 80vmin - 50px, 100px)); font-size: calc(round(down, 80vmin - 50px, 100px) * 0.15); position: relative; background-color: white; border: 2px solid #444; border-radius: 5px;">
             </div>
