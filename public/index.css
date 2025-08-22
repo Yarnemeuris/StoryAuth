@@ -45,6 +45,12 @@ h5 {
     font-family: sans-serif;
 }
 
+h1 {
+    font-family: sans-serif;
+    text-align: center;
+    margin: auto;
+}
+
 .emptyText {
     color: darkgray;
 }

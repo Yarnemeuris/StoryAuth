@@ -1,16 +1,22 @@
 const express = require('express');
 const app = express();
+const session = require('express-session');
 const fs = require('fs');
-const readline = require("readline")
+const readline = require('readline');
 const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const port = 8080;
 
+var sessionSecret = ""
 var users = {};
+
+loadData();
+console.log(sessionSecret)
 
 app.use(express.static('public', { "maxAge": 1000 }));
 app.use(express.json());
+app.use(session({ secret: sessionSecret, resave: false, saveUninitialized: false }))
 
 function usernameInUse(name) {
     return Object.keys(users).indexOf(name) != -1
@@ -27,37 +33,56 @@ app.post("/signup", async (req, res) => {
     }
 
     const hash = await bcrypt.hash(req.body.story, saltRounds);
-    users[req.body.username] = { hash: hash, panelInfo: req.body.panelInfo };
+    users[req.body.username] = { hash, panelInfo: req.body.panelInfo };
+
+    req.session.user = { username: req.params.name }
     res.status(201).end();
 });
 
-app.get("/logIn/story/:name", (req, res) => {
+app.get("/logIn/:name", (req, res) => {
     if (!usernameInUse(req.params.name)) {
         res.status(500).end();
         return;
     }
 
+    req.session.user = { username: req.params.name }
     res.status(200).json([users[req.params.name].panelInfo]);
+})
+
+app.post("/logIn/:name", async (req, res) => {
+    if (!usernameInUse(req.params.name)) {
+        res.status(409).end();
+        return;
+    }
+
+    const hash = users[req.params.name].hash
+    const rightStory = await bcrypt.compare(req.body.story, hash)
+
+    if (!rightStory) {
+        res.status(424).end();
+        return
+    }
+
+    res.status(200).end()
 })
 
 rl.on("line", (input) => {
     if (input != "exit" && input != "save") return
 
-    fs.writeFileSync('./data.json', JSON.stringify(users), 'utf8');
+    fs.writeFileSync('./data.json', JSON.stringify({ sessionSecret, users }), 'utf8');
     if (input == "save") return
 
     server.close();
     process.exit(0);
 });
 
-fs.readFile('./data.json', 'utf8', (err, data) => {
-    if (err) {
-        console.error(err);
-        return;
-    }
+function loadData() {
+    const data = fs.readFileSync('./data.json', 'utf8');
 
     console.log(data);
-    users = JSON.parse(data);
-});
+    const table = JSON.parse(data);
+    users = table.users;
+    sessionSecret = table.sessionSecret
+}
 
 var server = app.listen(port);

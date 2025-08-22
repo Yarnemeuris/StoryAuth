@@ -21,7 +21,7 @@ utils.addEventListener("#logInView #nextButton", "click", async (event) => {
     event.target.previousElementSibling.classList.add("hide");
     event.target.nextElementSibling.classList.remove("hide");
 
-    var story = await fetch("/logIn/story/" + value).then((res) => res.json());
+    var story = await fetch("/logIn/" + value).then((res) => res.json());
     story = story[0]
 
     document.querySelectorAll("#logInView .panel").forEach((panel) => {
@@ -43,8 +43,23 @@ utils.addEventListener("#logInView #nextButton", "click", async (event) => {
     utils.addEventListener("#logInView #logInButton", "click", logIn)
 })
 
-function logIn(event) {
-    
+async function logIn() {
+    const username = document.querySelector("#logInView #usernameInput").value;
+
+    var story = Array.from({ length: 6 }, () => []);
+    document.querySelectorAll("#signUpView .panel").forEach((panel) => {
+        story[panel.id].push(panel.style.backgroundColor);
+        panel.querySelectorAll("p").forEach((element) => {
+            story[panel.id].push(element.style.top.split("%")[0] + " " + element.style.left.split("%")[0] + element.innerText);
+        })
+        story[panel.id].sort();
+    })
+
+    const status = await fetch("/logIn/" + username, { method: "POST", headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ story: story.toString() }) }).then(res => res.status);
+
+    if (status != 200) return;
+
+    utils.switchToView("account");
 }
 
 function editPanel(event) {
