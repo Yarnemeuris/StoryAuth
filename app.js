@@ -45,7 +45,6 @@ app.get("/logIn/:name", (req, res) => {
         return;
     }
 
-    req.session.user = { username: req.params.name }
     res.status(200).json([users[req.params.name].panelInfo]);
 })
 
@@ -63,6 +62,7 @@ app.post("/logIn/:name", async (req, res) => {
         return
     }
 
+    req.session.user = { username: req.params.name }
     res.status(200).end()
 })
 
