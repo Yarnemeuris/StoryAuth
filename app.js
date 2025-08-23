@@ -66,6 +66,10 @@ app.post("/logIn/:name", async (req, res) => {
     res.status(200).end()
 })
 
+app.get('/loggedIn', (req, res) => {
+    res.status(200).send(req.session.user != undefined)
+})
+
 rl.on("line", (input) => {
     if (input != "exit" && input != "save") return
 
