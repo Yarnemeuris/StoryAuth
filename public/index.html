@@ -11,8 +11,14 @@
 </head>
 
 <body>
-    <div class="view" data-viewname="home">
-        <h1 style="font-size: 10vw; margin-top: 10vh;">StoryAuth</h1>
+    <div class="view" data-viewname="home" id="homeView" style="padding-bottom: 50vh; display: initial; height: auto;">
+        <header style="background-color: #444; height: 30px; width: 100%; position: fixed; top: 0px; display: flex; flex-direction: row-reverse;">
+            <button>log in</button>
+            <button id="signUp">sign up</button>
+        </header>
+        <h1 style="font-size: 8vw; margin-top: 10vh; color: lightgray;">StoryAuth</h1>
+        <h1 style="text-align: center; color: lightgray; margin: auto; margin-top: 80vh; font-family: sans-serif; font-size: 2.5vw;">How StoryAuth works:</h1>
+        <p style="margin: auto; margin-top: 20px; color: lightgray; width: max(250px, 50vw); font-size: 1.3vw;">StoryAuth uses a small story or comic to authenticate you. It can be about somthing that happend in your life, or just a fun story you made.<br><br>You can make the story with letters and numbers or with emojis. But don't make your story too complicated. Because you have to remember all the characters and their positions for when you log back in.</p>
     </div>
     
     <div class="view hide" data-viewname="signUp" id="signUpView">

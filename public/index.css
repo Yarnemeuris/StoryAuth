@@ -107,3 +107,15 @@ button {
     border-radius: 5px;
     cursor: pointer;
 }
+
+header button {
+    border: 0px;
+    border-radius: 0px;
+    width: 100px;
+    background-color: #444;
+    color: lightgray;
+}
+
+header button:hover {
+    background-color: #222;
+}

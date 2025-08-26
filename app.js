@@ -12,7 +12,6 @@ var sessionSecret = ""
 var users = {};
 
 loadData();
-console.log(sessionSecret)
 
 app.use(express.static('public', { "maxAge": 1000 }));
 app.use(express.json());
@@ -67,6 +66,7 @@ app.post("/logIn/:name", async (req, res) => {
 })
 
 app.get('/loggedIn', (req, res) => {
+    res.set('Cache-Control', 'private, max-age=600')
     res.status(200).send(req.session.user != undefined)
 })
 

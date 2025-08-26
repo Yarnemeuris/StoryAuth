@@ -7,7 +7,7 @@ utils.addEventListener("#logInView", "viewSwitch", () => {
 
 utils.addEventListener("#logInView #nextButton", "click", async (event) => {
     const value = document.querySelector("#logInView #usernameInput").value;
-    if (value == "") return;
+    if (value == "" || value == document.querySelector("#logInView #usernameInput").dataset.defaultvalue) return;
 
     const response = await fetch("/signup/usernameInUse/" + value).then((res) => res.json());
     if (!response[0]) {

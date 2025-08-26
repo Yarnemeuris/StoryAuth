@@ -45,8 +45,6 @@ function startMove(event) {
 }
 
 utils.addEventListener("#add", "click", () => {
-    if (document.getElementById("addInput").value.match(/\p{Extended_Pictographic}/gu) == null) return;
-
     const p = document.createElement("p");
     p.innerText = document.getElementById("addInput").value;
     p.style.fontSize = "inherit";
