@@ -11,6 +11,8 @@ export function switchToView(viewName) {
 
         view.classList.add("hide");
     }
+
+    window.history.replaceState(null, "", viewName)
 }
 
 export function addEventListener(query, event, exec, options) {
@@ -81,6 +83,9 @@ async function importAllHTML(element) {
         await importHTML(importElement);
     }
 }
+
+const params = new URLSearchParams(document.location.search)
+switchToView(params.get("view") == null ? "" : params.get("view"))
 
 for (var element of document.getElementsByTagName("input")) {
     if (element.type !== "text") continue;

@@ -70,6 +70,23 @@ app.get('/loggedIn', (req, res) => {
     res.status(200).send(req.session.user != undefined)
 })
 
+app.get('/logIn', (req, res) => {
+    res.redirect(301, '/?view=logIn')
+})
+
+app.get('/signUp', (req, res) => {
+    res.redirect(301, '/?view=signUp')
+})
+
+app.get('/account', (req, res) => {
+    if (req.session.user == undefined) {
+        res.redirect('/')
+        return
+    }
+
+    res.redirect('/?view=account')
+})
+
 rl.on("line", (input) => {
     if (input != "exit" && input != "save") return
 

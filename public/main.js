@@ -2,8 +2,6 @@ import * as utils from "./js/utils.js";
 import "./js/singUp.js";
 import "./js/logIn.js";
 
-utils.switchToView("home")
-
 async function getIfLoggedIn() {
     return await fetch("/loggedIn").then((res) => res.json());
 }
