@@ -93,7 +93,7 @@ import {
 }
 
 .hide {
-    display: none;
+    display: none !important;
 }
 
 .button {
@@ -118,4 +118,8 @@ header button {
 
 header button:hover {
     background-color: #222;
+}
+
+#accountView .panel{
+    border: 1px solid #444;
 }

@@ -1,6 +1,10 @@
 import * as utils from "./js/utils.js";
 import "./js/singUp.js";
 import "./js/logIn.js";
+import "./js/account.js";
+
+const params = new URLSearchParams(document.location.search)
+utils.switchToView(params.get("view") == null ? "" : params.get("view"))
 
 async function getIfLoggedIn() {
     return await fetch("/loggedIn").then((res) => res.json());

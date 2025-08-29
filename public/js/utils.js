@@ -84,8 +84,6 @@ async function importAllHTML(element) {
     }
 }
 
-const params = new URLSearchParams(document.location.search)
-switchToView(params.get("view") == null ? "" : params.get("view"))
 
 for (var element of document.getElementsByTagName("input")) {
     if (element.type !== "text") continue;

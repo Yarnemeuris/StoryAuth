@@ -32,7 +32,7 @@ app.post("/signup", async (req, res) => {
     }
 
     const hash = await bcrypt.hash(req.body.story, saltRounds);
-    users[req.body.username] = { hash, panelInfo: req.body.panelInfo };
+    users[req.body.username] = { hash, panelInfo: req.body.panelInfo, story: [] };
 
     req.session.user = { username: req.params.name }
     res.status(201).end();
@@ -68,6 +68,27 @@ app.post("/logIn/:name", async (req, res) => {
 app.get('/loggedIn', (req, res) => {
     res.set('Cache-Control', 'private, max-age=600')
     res.status(200).send(req.session.user != undefined)
+})
+
+app.get('/account/story', (req, res) => {
+    if (req.session.user == undefined) {
+        res.status(401).end();
+        return;
+    }
+
+    res.status(200).json(users[req.session.user.username].story)
+})
+
+app.put('/account/story', (req, res) => {
+    if (req.session.user == undefined) {
+        res.status(401).end();
+        return;
+    }
+
+    users[req.session.user.username].story = req.body
+    console.log(users[req.session.user.username].story)
+
+    res.status(200).end()
 })
 
 app.get('/logIn', (req, res) => {
