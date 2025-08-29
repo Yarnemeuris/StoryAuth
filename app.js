@@ -86,7 +86,6 @@ app.put('/account/story', (req, res) => {
     }
 
     users[req.session.user.username].story = req.body
-    console.log(users[req.session.user.username].story)
 
     res.status(200).end()
 })
@@ -111,12 +110,16 @@ app.get('/account', (req, res) => {
 rl.on("line", (input) => {
     if (input != "exit" && input != "save") return
 
-    fs.writeFileSync('./data.json', JSON.stringify({ sessionSecret, users }), 'utf8');
+    saveData()
     if (input == "save") return
 
     server.close();
     process.exit(0);
 });
+
+function saveData() {
+    fs.writeFileSync('./data.json', JSON.stringify({ sessionSecret, users }), 'utf8');
+}
 
 function loadData() {
     const data = fs.readFileSync('./data.json', 'utf8');
@@ -126,5 +129,7 @@ function loadData() {
     users = table.users;
     sessionSecret = table.sessionSecret
 }
+
+setInterval(saveData, 3600000);
 
 var server = app.listen(port);
