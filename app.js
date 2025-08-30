@@ -5,6 +5,7 @@ const fs = require('fs');
 const readline = require('readline');
 const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
 const bcrypt = require('bcrypt');
+const { execSync } = require('child_process');
 const saltRounds = 10;
 const port = 8080;
 
@@ -26,15 +27,15 @@ app.get("/signup/usernameInUse/:name", (req, res) => {
 });
 
 app.post("/signup", async (req, res) => {
-    if (usernameInUse(req.body.name)) {
+    if (usernameInUse(req.body.username)) {
         res.status(409).end();
         return;
     }
 
     const hash = await bcrypt.hash(req.body.story, saltRounds);
-    users[req.body.username] = { hash, panelInfo: req.body.panelInfo, story: [] };
+    users[req.body.username] = { hash, panelInfo: req.body.panelInfo, story: [{ color: "rgb(255, 255, 255)", chars: [] }, { color: "rgb(255, 255, 255)", chars: [] }, { color: "rgb(255, 255, 255)", chars: [] }] };
 
-    req.session.user = { username: req.params.name }
+    req.session.user = { username: req.body.username }
     res.status(201).end();
 });
 
@@ -122,12 +123,14 @@ function saveData() {
 }
 
 function loadData() {
-    const data = fs.readFileSync('./data.json', 'utf8');
-
-    console.log(data);
-    const table = JSON.parse(data);
-    users = table.users;
-    sessionSecret = table.sessionSecret
+    if (fs.existsSync("./data.json")) {
+        const data = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
+        users = data.users;
+        sessionSecret = data.sessionSecret
+    } else {
+        console.log("No data file found. Generating new sessionSecret and user table.")
+        sessionSecret = execSync("openssl rand -base64 32").toString();
+    }
 }
 
 setInterval(saveData, 3600000);

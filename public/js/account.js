@@ -56,6 +56,8 @@ utils.addEventListener("#addRow", "click", (event) => {
     for (let i = 0; i < 3; i++) {
         storyDiv.appendChild(newPanel("#fff", []))
     }
+
+    sendStory()
 })
 
 function editPanel(event) {
