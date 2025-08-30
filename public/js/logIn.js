@@ -47,7 +47,7 @@ async function logIn() {
     const username = document.querySelector("#logInView #usernameInput").value;
 
     var story = Array.from({ length: 6 }, () => []);
-    document.querySelectorAll("#signUpView .panel").forEach((panel) => {
+    document.querySelectorAll("#logInView .panel").forEach((panel) => {
         story[panel.id].push(panel.style.backgroundColor);
         panel.querySelectorAll("p").forEach((element) => {
             story[panel.id].push(element.style.top.split("%")[0] + " " + element.style.left.split("%")[0] + element.innerText);
