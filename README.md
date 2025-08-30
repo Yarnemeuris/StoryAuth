@@ -21,3 +21,5 @@ npm start
 ```
 
 The rest of the setup will happend automatically when you start the server.
+
+When the server is running you can use the commands `save` and `exit`. You don't need to save because it auto saves every hour, and exit also save.

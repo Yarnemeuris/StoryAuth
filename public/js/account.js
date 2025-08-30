@@ -34,7 +34,7 @@ async function sendStory() {
         story.push(panelData);
     })
 
-    fetch("/account/story", { method: "PUT", headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(story) }).then(res => res.status)
+    fetch("./account/story", { method: "PUT", headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(story) }).then(res => res.status)
 }
 
 utils.addEventListener("#accountView", "viewSwitch", async () => {
@@ -43,7 +43,7 @@ utils.addEventListener("#accountView", "viewSwitch", async () => {
 
     const storyDiv = document.querySelector("#accountView #story");
 
-    const story = await fetch("/account/story").then((res) => res.json());
+    const story = await fetch("./account/story").then((res) => res.json());
 
     story.forEach(panel => {
         storyDiv.appendChild(newPanel(panel.color, panel.chars))

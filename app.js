@@ -7,7 +7,7 @@ const rl = readline.createInterface({ input: process.stdin, output: process.stdo
 const bcrypt = require('bcrypt');
 const { execSync } = require('child_process');
 const saltRounds = 10;
-const port = 8080;
+const port = 80;
 
 var sessionSecret = ""
 var users = {};
@@ -92,20 +92,20 @@ app.put('/account/story', (req, res) => {
 })
 
 app.get('/logIn', (req, res) => {
-    res.redirect(301, '/?view=logIn')
+    res.redirect(301, '/StoryAuth/?view=logIn')
 })
 
 app.get('/signUp', (req, res) => {
-    res.redirect(301, '/?view=signUp')
+    res.redirect(301, '/StoryAuth/?view=signUp')
 })
 
 app.get('/account', (req, res) => {
     if (req.session.user == undefined) {
-        res.redirect('/')
+        res.redirect('/StoryAuth/')
         return
     }
 
-    res.redirect('/?view=account')
+    res.redirect('/StoryAuth/?view=account')
 })
 
 rl.on("line", (input) => {

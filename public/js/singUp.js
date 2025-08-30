@@ -85,7 +85,7 @@ utils.addEventListener("#createAccountButton", "click", async () => {
         story[panel.id].sort()
     })
 
-    const status = await fetch("/signup", { method: "POST", headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: username, story: story.toString(), panelInfo: panelInfo }) }).then(res => res.status);
+    const status = await fetch("./signup", { method: "POST", headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: username, story: story.toString(), panelInfo: panelInfo }) }).then(res => res.status);
 
     if (status != 201) {
         checkUsername()
@@ -100,7 +100,7 @@ async function checkUsername() {
     const value = element.value
     if (value == "") return
 
-    const response = await fetch("/signup/usernameInUse/" + value, {}).then((res) => res.json());
+    const response = await fetch("./signup/usernameInUse/" + value, {}).then((res) => res.json());
 
     if (element.value != value) return
     const available = !response[0]
