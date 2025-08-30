@@ -5,6 +5,14 @@ StoryAuth is a login system, that instead of using passwords, uses a story/comic
 ## creating an account
 To create an account simply choose a username, and make a small story/comic. You can edit a pnel by clicking on it. Then you can add an emoji (if you're on windows you can open the emoji panel with `windows key + .` or `windows key + ;`) or change the background color. Don't make it to complecated. Because you need to remeber every emoji and it's location.
 
+Here are a couple examples of stories you can make:
+
+<img width="351" height="313" alt="plane crash story" src="https://github.com/user-attachments/assets/d8cdbb1a-8b23-4ea4-94ef-dbc50ed811cb" />
+<img width="351" height="358" alt="film creation story" src="https://github.com/user-attachments/assets/d302c27b-7b0b-4344-a29b-fac2c6a9c98e" />
+
+(Make something that isn't as complex as this.)
+
+
 # setup
 1. Clone the repository:
 ```shell
